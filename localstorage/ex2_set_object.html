@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>localStorage</title>
+
+<h1>ex2_set_object</h1>
+<p>This example will convert an object into its JSON representation so
+it can be saved to localStorage as a single key/value pair.
+
+<script>
+
+  const exampleObject = {
+    fname: "Rich",
+    sname: "Boakes"
+  };
+
+  const exampleObjectAsJSON = JSON.stringify(exampleObject);
+
+  localStorage.setItem( "myLittleObject", exampleObjectAsJSON );
+
+  console.log( localStorage );
+
+</script>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>localStorage</title>
+
+<h1>ex1_get</h1>
+<p>This example will retrieve two key value pairs from localStorage
+and display the values in page.
+
+<output id=out></output>
+
+<script>
+
+  // retrieve two key/value pairs
+  const fname = localStorage.getItem("fname");
+  const sname = localStorage.getItem("sname");
+
+  const out = document.querySelector('output');
+  out.textContent = `${fname} ${sname}`
+
+</script>

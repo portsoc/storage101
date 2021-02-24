@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>localStorage</title>
+
+<h1>ex3_get_object</h1>
+<p>This example retrieves a valeu from localStorage, the value is
+assumed to be a JSON string, so it is parsed to convert it into an
+object, and that object's fname and sname values are written to
+the screen.
+
+<output id=out></output>
+
+<script>
+
+  // retrieve two key/value pairs
+  const string = localStorage.getItem("myLittleObject");
+  const myObject = JSON.parse(string);
+
+  const out = document.querySelector('output');
+  out.textContent = `${myObject.fname} ${myObject.sname}`
+
+</script>

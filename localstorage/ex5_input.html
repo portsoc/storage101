@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>localStorage</title>
+
+<h1>ex5_input</h1>
+
+<input id=in type=text autofocus>
+
+<script>
+
+  function save(e) {
+    localStorage.setItem("inputBoxText", e.target.value);
+  }
+
+  const inputBox = document.querySelector("#in");
+
+  inputBox.value = localStorage.getItem("inputBoxText");
+  inputBox.addEventListener('input', save);
+
+
+</script>

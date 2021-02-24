@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>localStorage</title>
+
+<h1>ex4_length_clear</h1>
+
+<p>This example clears localStorage for the current domain.
+The number of key/value pairs in localStorage before and after being
+cleared is reported.
+
+<output id=out></output>
+
+<script>
+  const out = document.querySelector('output');
+
+  const lengthBefore = localStorage.length;
+
+  localStorage.clear();
+
+  const lengthAfter = localStorage.length;
+
+  out.textContent = `before:${lengthBefore} after:${lengthAfter}`
+
+// save content of input boxes
+// save config parameters for the page - kindle-esque
+
+</script>
