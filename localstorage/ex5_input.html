@@ -6,18 +6,34 @@
 
 <h1>ex5_input</h1>
 
-<input id=in type=text autofocus>
+<textarea
+  id=in
+  autofocus
+  placeholder="tell us about yourself…"
+  rows=10
+  cols=50
+  ></textarea>
+
+<p><button id=submit>Submit</button></p>
 
 <script>
 
-  function save(e) {
-    localStorage.setItem("inputBoxText", e.target.value);
+  const textBox = document.querySelector("#in");
+  const submitBtn = document.querySelector("#submit");
+
+  function save() {
+    localStorage.setItem("savedText", textBox.value);
   }
 
-  const inputBox = document.querySelector("#in");
+  function submit() {
+    // let's assume we submit to the server here
+    textBox.value = '';
+    save();
+  }
 
-  inputBox.value = localStorage.getItem("inputBoxText");
-  inputBox.addEventListener('input', save);
+  textBox.value = localStorage.getItem("savedText");
+  textBox.addEventListener('input', save);
 
+  submitBtn.addEventListener('click', submit);
 
 </script>
