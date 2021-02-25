@@ -1,0 +1,11 @@
+:root {
+  --text: 100%;
+  --padding: 1rem;
+  --lineheight: 1rem;
+}
+
+body {
+  font-size: var(--text);
+  padding: var(--padding);
+  line-height: var(--lineheight);
+}
