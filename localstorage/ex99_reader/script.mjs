@@ -1,43 +1,70 @@
-function save() {
-  const config = {
-    txt: document.querySelector('#txt').value,
-    pad: document.querySelector('#pad').value,
-    lnh: document.querySelector('#lnh').value,
+const DEFAULTS = {};
+const OPTIONS = [];
+const el = {};
+
+function handleConfigChange() {
+
+  const config = {};
+  for (const opt of OPTIONS) {
+    config[opt] = el[opt].value;
   }
+
+  saveConfig(config);
+  updateCSSVariables(config);
+}
+
+function saveConfig(config) {
   const configAsString = JSON.stringify(config);
   localStorage.setItem("readerConfig", configAsString);
-
-  updateVariables();
 }
 
 function loadConfig() {
   const configAsString = localStorage.getItem("readerConfig");
-  const config = JSON.parse(configAsString);
-  return config;
+  try {
+    const config = JSON.parse(configAsString);
+    return config;
+  } catch (e) {
+    return {};
+  }
 }
 
-function updateVariables() {
-  const config = loadConfig();
+function updateCSSVariables(config) {
   const rootStyle = document.documentElement.style;
-  rootStyle.setProperty('--text', config.txt+"%" );
-  rootStyle.setProperty('--padding', config.pad+"rem" );
-  rootStyle.setProperty('--lineheight', config.lnh+"em" );
+  for (const opt of OPTIONS) {
+    rootStyle.setProperty('--'+opt, config[opt]+"em" );
+  }
 }
+function init() {
 
-function updateInputValues() {
+  /**
+   * Find options in the page
+   */
+  const inputs = document.querySelectorAll("input");
+  for (const i of inputs) {
+    OPTIONS.push(i.id);
+    DEFAULTS[i.id] = i.value;
+  }
+
+  /* Get a handle on each element and store it for
+   * later use whilst also connecting evebt listeners
+   * to each.
+   */
+  for (const opt of OPTIONS) {
+    el[opt] = document.querySelector("#"+opt);
+    el[opt].addEventListener('input', handleConfigChange);
+  }
+
+  /* Load previously stired config and modify input fields
+   * to reflect those values.
+   */
   const config = loadConfig();
-  document.querySelector('#txt').value = config.txt;
-  document.querySelector('#pad').value = config.pad;
-  document.querySelector('#lnh').value = config.lnh;
-  updateVariables();
+  for (const opt of OPTIONS) {
+    el[opt].value = config[opt]+"em";
+  }
+
+  updateCSSVariables(config);
+
 }
 
-function prepareListeners() {
-  document.querySelector('#txt').addEventListener('input', save)
-  document.querySelector('#pad').addEventListener('input', save)
-  document.querySelector('#lnh').addEventListener('input', save)
-  updateInputValues();
-}
-
-window.addEventListener('load', prepareListeners);
+window.addEventListener('load', init);
 

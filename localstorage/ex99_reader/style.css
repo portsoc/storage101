@@ -1,11 +1,45 @@
 :root {
-  --text: 100%;
-  --padding: 1rem;
-  --lineheight: 1rem;
+  --textSize: 1em;
+  --paragraphSpacing: 1em;
+  --lineSpacing: 1em;
+  --pageWidth: 30em;
 }
 
-body {
-  font-size: var(--text);
-  padding: var(--padding);
-  line-height: var(--lineheight);
+* {
+  margin: 0;
+}
+
+aside {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+aside label {
+  display: flex;
+  flex-direction: row;
+  height: 2em;
+  margin: 0.25em 0.5rem;
+}
+
+aside p {
+  width: 10em;
+  margin: 0.25em;
+}
+
+aside label input {
+  flex-grow: 4;
+}
+
+
+main {
+  font-size: var(--textSize);
+  line-height: var(--lineSpacing);
+  max-width: var(--pageWidth);
+  margin: var(--paragraphSpacing) auto;
+}
+
+main>* {
+  /* ingore side padding */
+  padding: var(--paragraphSpacing) 0;
 }
