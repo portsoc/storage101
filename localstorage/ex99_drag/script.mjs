@@ -80,39 +80,6 @@ function init() {
 
   /* Use the config options in the page */
   updateCSSVariables(config);
-
-  function loadTextPromise(file) {
-    const fr = new FileReader();
-    return new Promise((resolve, reject) => {
-      fr.addEventListener('load', () => resolve(fr.result));
-      fr.readAsText(file);
-    });
-  };
-
-  function format(text) {
-    const main = document.querySelector('main');
-    main.textContent='';
-debugger;
-    const paras = text.split("\n\n");
-    for (const para of paras) {
-      const p = document.createElement('p');
-      p.textContent = para;
-      main.append(p);
-    }
-  }
-
-  async function handleDrop(e) {
-    e.preventDefault();
-    for (const file of e.dataTransfer.files) {
-      if (file.type === "text/plain") {
-        const text = await loadTextPromise(file);
-        format(text);
-      }
-    }
-  }
-
-  window.addEventListener("dragover", e => { e.preventDefault(); });
-  window.addEventListener("drop", handleDrop);
 };
 
 window.addEventListener('load', init);
