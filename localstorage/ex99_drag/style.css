@@ -1,0 +1,54 @@
+:root {
+  --textSize: 1em;
+  --paragraphSpacing: 1em;
+  --lineSpacing: 1em;
+  --pageWidth: 30em;
+  --paragraphIndent: 0;
+}
+
+aside {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+aside label {
+  display: flex;
+  flex-direction: row;
+  height: 2em;
+  margin: 0.25em 0.5rem;
+}
+
+aside label > span {
+  width: 10em;
+  margin: 0.25em;
+  text-align: right;
+}
+
+aside label input {
+  flex-grow: 4;
+}
+
+
+main {
+  font-size: var(--textSize);
+  line-height: var(--lineSpacing);
+  max-width: var(--pageWidth);
+  margin: var(--paragraphSpacing) auto;
+  white-space: pre-line;
+}
+
+main>p {
+  /* ingore side padding */
+  margin: var(--paragraphSpacing) 0;
+  text-indent: var(--paragraphIndent);
+}
+
+summary {
+  cursor: pointer;
+  margin: 0.25em 0.5rem;
+}
+
+summary:focus {
+  outline: none;
+}
