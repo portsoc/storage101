@@ -89,12 +89,24 @@ function init() {
     });
   };
 
+  function format(text) {
+    const main = document.querySelector('main');
+    main.textContent='';
+debugger;
+    const paras = text.split("\n\n");
+    for (const para of paras) {
+      const p = document.createElement('p');
+      p.textContent = para;
+      main.append(p);
+    }
+  }
+
   async function handleDrop(e) {
     e.preventDefault();
     for (const file of e.dataTransfer.files) {
       if (file.type === "text/plain") {
         const text = await loadTextPromise(file);
-        document.querySelector('main').textContent = text;
+        format(text);
       }
     }
   }
