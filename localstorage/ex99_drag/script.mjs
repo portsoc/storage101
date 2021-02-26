@@ -50,6 +50,35 @@ function updateCSSVariables(config) {
   }
 }
 
+
+/**
+ * A naive formatter that looks for two carriage returns
+ * to denote a paragraph, and uses this to split text.
+ * Paragraphs are then added one by one to the page.
+ */
+export function format(text) {
+  const main = document.querySelector('main');
+  main.textContent='';
+  const paras = text.split("\n\n");
+  for (const para of paras) {
+    const p = document.createElement('p');
+    p.textContent = para;
+    main.append(p);
+  }
+}
+
+/**
+ * When called this function should replace the page
+ * content with anything that's ben previously loaded,
+ * if such old words are found.
+ */
+function refreshContent() {
+  const text = localStorage.getItem("text");
+  if (text) {
+    format(text);
+  }
+}
+
 function init() {
 
   /**
@@ -78,8 +107,12 @@ function init() {
     el[opt].value = config[opt];
   }
 
+  /* If there is alternative content, use it... */
+  refreshContent();
+
   /* Use the config options in the page */
   updateCSSVariables(config);
+
 };
 
 window.addEventListener('load', init);
