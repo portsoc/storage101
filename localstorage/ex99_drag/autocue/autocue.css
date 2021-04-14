@@ -1,0 +1,23 @@
+main {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  transform-origin: center top;
+  animation: crawler 78s linear;
+  animation-duration: 100s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+@keyframes crawler {
+  0%
+    {
+      transform: translateY(0%);
+    }
+  100%
+    {
+      transform: translateY(-100%);
+    }
+  }

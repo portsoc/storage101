@@ -1,27 +1,13 @@
+import { format } from "./script.mjs";
+
 /* Load content from a file */
 function loadTextPromise(file) {
   const fr = new FileReader();
   return new Promise((resolve, reject) => {
-    fr.addEventListener('load', () => resolve(fr.result));
     fr.readAsText(file);
+    fr.addEventListener('load', () => resolve(fr.result));
   });
 };
-
-/**
- * A naive formatter that looks for two carriage returns
- * to denote a paragraph, and uses this to split text.
- * Paragraphs are then added one by one to the page.
- */
-function format(text) {
-  const main = document.querySelector('main');
-  main.textContent='';
-  const paras = text.split("\n\n");
-  for (const para of paras) {
-    const p = document.createElement('p');
-    p.textContent = para;
-    main.append(p);
-  }
-}
 
 /**
  * If a text file is dropped, its content
@@ -34,6 +20,7 @@ async function handleDrop(e) {
     if (file.type === "text/plain") {
       const text = await loadTextPromise(file);
       format(text);
+      localStorage.setItem("text", text);
     }
   }
 }
